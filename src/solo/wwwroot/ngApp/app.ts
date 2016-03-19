@@ -13,10 +13,22 @@ namespace solo {
                 controller: solo.Controllers.HomeController,
                 controllerAs: 'controller'
             })
-            .state('about', {
-                url: '/about',
-                templateUrl: '/ngApp/about.html',
-                controller: solo.Controllers.AboutController,
+            .state('board', {
+                url: '/board',
+                templateUrl: '/ngApp/board.html',
+                controller: solo.Controllers.BoardController,
+                controllerAs: 'controller'
+            })
+            .state('post', {
+                url: '/user',
+                templateUrl: '/ngApp/post.html',
+                controller: solo.Controllers.PostController,
+                controllerAs: 'controller'
+            })
+            .state('user', {
+                url: '/user',
+                templateUrl: '/ngApp/user.html',
+                controller: solo.Controllers.UserController,
                 controllerAs: 'controller'
             })
             .state('notFound', {

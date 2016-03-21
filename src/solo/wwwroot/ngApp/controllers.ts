@@ -4,6 +4,14 @@ namespace solo.Controllers {
         
     }
 
+    export class LogInController {
+
+    }
+
+    export class AllBoardsController {
+
+    }
+
     export class BoardController {
         
     }

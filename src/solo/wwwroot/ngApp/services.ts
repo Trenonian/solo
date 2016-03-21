@@ -24,4 +24,42 @@ namespace solo.Services {
         }
     }
     angular.module('solo').service('idService', IDService);
+
+    export class ScoreService {
+        _score: number;
+        get score() {
+            return this._score;
+        }
+        ChangeScore(delta) {
+            this._score += delta;
+        }
+        _postScore: number;
+        get postScore() {
+            return this._postScore;
+        }
+        ChangePostScore(delta) {
+            this._postScore += delta;
+        }
+        _commentScore: number;
+        get commentScore() {
+            return this._commentScore;
+        }
+        ChangeCommentScore(delta) {
+            this._commentScore += delta;
+        }
+        constructor() {
+            this._score = 0;
+            this._postScore = 0;
+            this._commentScore = 0;
+        }
+    }
+    angular.module('solo').service('scoreService', ScoreService);
+
+    export class BoardService {
+        boards: solo.Models.Board[];
+        constructor() {
+            this.boards = [];
+        }
+    }
+    angular.module('solo').service('boardService', BoardService);
 }

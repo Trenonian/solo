@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace solo.Models
 {
-    public class Comment
+    public abstract class Voteable
     {
         public int Id { get; set; }
         public User Creator { get; set; }
@@ -28,16 +28,15 @@ namespace solo.Models
             newComment.ParentBoard = ParentBoard;
             Comments.Add(newComment);
         }
-        public void removeComment(Comment delComment)
+        public void removeComment(Comment delComment, User deleter)
         {
-            Comments.Remove(delComment);
+            if (ParentBoard.Mods.Contains(deleter))
+            {
+                Comments.Remove(delComment);
+            }
         }
         public int Score { get; private set; }
-        public void ChangeScore(int delta)
-        {
-            Creator.ChangeCommentScore(delta);
-            Score += delta;
-        }
+        public abstract void ChangeScore(int delta);
         public bool HasVoted(User votedUser)
         {
             return Votes.Exists(x => x.Voter.Id == votedUser.Id);

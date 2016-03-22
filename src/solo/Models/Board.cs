@@ -7,110 +7,58 @@ namespace solo.Models
 {
     public class Board
     {
-        private int _id;
-        public int Id {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-        }
-        private string _name;
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-        }
-        private List<Post> _posts;
-        public List<Post> Posts
-        {
-            get
-            {
-                return _posts;
-            }
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Post> Posts { get; set; }
         public void AddPost(Post newPost)
         {
-            _posts.Add(newPost);
+            newPost.ParentBoard = this;
+            Posts.Add(newPost);
         }
         public void removePost(Post delPost)
         {
-            _posts.Remove(delPost);
+            Posts.Remove(delPost);
         }
-        private List<User> _mods;
-        public List<User> Mods
-        {
-            get
-            {
-                return _mods;
-            }
-        }
+        public List<User> Mods { get; set; }
         public void addMod(User newMod)
         {
-            _mods.Add(newMod);
+            Mods.Add(newMod);
         }
         public void removeMod(User delMod)
         {
-            _mods.Remove(delMod);
+            Mods.Remove(delMod);
         }
-        private List<User> _banned;
-        public List<User> Banned
-        {
-            get
-            {
-                return _banned;
-            }
-        }
+        public List<User> Banned { get; set; }
         public void addBanned(User newBanned)
         {
-            _banned.Add(newBanned);
+            Banned.Add(newBanned);
         }
         public void removeBanned(User delBanned)
         {
-            _banned.Remove(delBanned);
+            Banned.Remove(delBanned);
         }
-        private List<User> _allowed;
-        public List<User> Allowed
-        {
-            get
-            {
-                return _allowed;
-            }
-        }
+        public List<User> Allowed { get; set; }
         public void addAllowed(User newAllowed)
         {
-            _allowed.Add(newAllowed);
+            Allowed.Add(newAllowed);
         }
         public void removeAllowed(User delAllowed)
         {
-            _allowed.Remove(delAllowed);
+            Allowed.Remove(delAllowed);
         }
-        private int _score;
-        public int Score
-        {
-            get
-            {
-                return _score;
-            }
-        }
+        public int Score { get; set; }
         public void ChangeScore(int delta)
         {
-            _score += delta;
+            Score += delta;
         }
-        Board(string name, User creator) {
-            _id = ;
-            _name = name;
-            _posts = new List<Post>();
-            _mods = new List<User>();
-            _allowed = new List<User>();
-            _banned = new List<User>();
-            _mods.Add(creator);
+        public bool Restricted { get; set; }
+        public void SetRestricted(bool locked, User user)
+        {
+            if (Mods.Contains(user))
+            {
+                Restricted = locked;
+            }
         }
-}
+    }
 
 }

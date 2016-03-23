@@ -43,6 +43,12 @@ namespace solo {
                 controller: solo.Controllers.UserController,
                 controllerAs: 'controller'
             })
+            .state('test', {
+                url: '/test',
+                templateUrl: '/ngApp/test.html',
+                controller: solo.Controllers.TestController,
+                controllerAs: 'controller'
+            })
             .state('notFound', {
                 url: '/notFound',
                 templateUrl: '/ngApp/notFound.html'

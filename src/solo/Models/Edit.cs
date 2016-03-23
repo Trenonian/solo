@@ -7,6 +7,7 @@ namespace solo.Models
 {
     public class Edit
     {
+        public int Id { get; set; }
         public DateTime Time { get; set; }
         public string OldContent { get; set; }
     }

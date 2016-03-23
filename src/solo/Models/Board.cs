@@ -15,16 +15,16 @@ namespace solo.Models
             newPost.ParentBoard = this;
             Posts.Add(newPost);
         }
-        public void removePost(Post delPost)
+        public void RemovePost(Post delPost)
         {
             Posts.Remove(delPost);
         }
         public List<User> Mods { get; set; }
-        public void addMod(User newMod)
+        public void AddMod(User newMod)
         {
             Mods.Add(newMod);
         }
-        public void removeMod(User delMod)
+        public void RemoveMod(User delMod)
         {
             Mods.Remove(delMod);
         }
@@ -33,7 +33,7 @@ namespace solo.Models
         {
             Banned.Add(newBanned);
         }
-        public void removeBanned(User delBanned)
+        public void RemoveBanned(User delBanned)
         {
             Banned.Remove(delBanned);
         }
@@ -42,14 +42,9 @@ namespace solo.Models
         {
             Allowed.Add(newAllowed);
         }
-        public void removeAllowed(User delAllowed)
+        public void RemoveAllowed(User delAllowed)
         {
             Allowed.Remove(delAllowed);
-        }
-        public int Score { get; set; }
-        public void ChangeScore(int delta)
-        {
-            Score += delta;
         }
         public bool Restricted { get; set; }
         public void SetRestricted(bool locked, User user)

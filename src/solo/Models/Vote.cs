@@ -7,6 +7,7 @@ namespace solo.Models
 {
     public class Vote
     {
+        public int Id { get; set; }
         public User Voter { get; set; }
         private int _poll;
         public int Poll

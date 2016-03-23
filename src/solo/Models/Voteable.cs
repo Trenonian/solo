@@ -10,6 +10,8 @@ namespace solo.Models
         public int Id { get; set; }
         public User Creator { get; set; }
         public Board ParentBoard { get; set; }
+        public DateTime Created { get; set; }
+        public abstract void Delete();
         public string Content { get; set; }
         public void EditContent(User newUser, string newContent)
         {
@@ -20,33 +22,29 @@ namespace solo.Models
             });
             Content = newContent;
         }
-        public DateTime Created { get; set; }
-        private List<Edit> Edits;
+        public void RemoveComment(Comment delComment)
+        {
+            Comments.Remove(delComment);
+        }
+        public List<Edit> Edits;
         public List<Comment> Comments { get; set; }
-        public void addComment(Comment newComment)
+        public void AddComment(Comment newComment)
         {
             newComment.ParentBoard = ParentBoard;
             Comments.Add(newComment);
         }
-        public void removeComment(Comment delComment, User deleter)
-        {
-            if (ParentBoard.Mods.Contains(deleter))
-            {
-                Comments.Remove(delComment);
-            }
-        }
-        public int Score { get; private set; }
+        public int Score { get; set; }
         public abstract void ChangeScore(int delta);
         public bool HasVoted(User votedUser)
         {
             return Votes.Exists(x => x.Voter.Id == votedUser.Id);
         }
-        public int CheckVote(User checkUser)
+        public Vote CheckVote(User checkUser)
         {
-            return Votes.FindIndex(x => x.Voter.Id == checkUser.Id);
+            return Votes.Find(x => x.Voter.Id == checkUser.Id);
         }
         public List<Vote> Votes { get; set; }
-        public void upVote(User upUser)
+        public void UpVote(User upUser)
         {
             if (!HasVoted(upUser))
             {
@@ -58,24 +56,25 @@ namespace solo.Models
                 ChangeScore(1);
                 return;
             }
-            int oldVote = CheckVote(upUser);
-            switch (Votes[oldVote].Poll)
+            Vote oldVote = CheckVote(upUser);
+            switch (oldVote.Poll)
             {
                 case 1:
-                    Votes[oldVote].Poll = 0;
+                    oldVote.Poll = 0;
+                    Votes.Remove(oldVote);
                     ChangeScore(-1);
                     break;
                 case 0:
                     ChangeScore(1);
-                    Votes[oldVote].Poll = 1;
+                    oldVote.Poll = 1;
                     break;
                 case -1:
                     ChangeScore(2);
-                    Votes[oldVote].Poll = 1;
+                    oldVote.Poll = 1;
                     break;
             }
         }
-        public void downVote(User downUser)
+        public void DownVote(User downUser)
         {
             if (!HasVoted(downUser))
             {
@@ -87,20 +86,20 @@ namespace solo.Models
                 ChangeScore(-1);
                 return;
             }
-            int oldVote = CheckVote(downUser);
-            switch (Votes[oldVote].Poll)
+            Vote oldVote = CheckVote(downUser);
+            switch (oldVote.Poll)
             {
                 case -1:
-                    Votes[oldVote].Poll = 0;
+                    Votes.Remove(oldVote);
                     ChangeScore(1);
                     break;
                 case 0:
                     ChangeScore(-1);
-                    Votes[oldVote].Poll = -1;
+                    oldVote.Poll = -1;
                     break;
                 case 1:
                     ChangeScore(-2);
-                    Votes[oldVote].Poll = -1;
+                    oldVote.Poll = -1;
                     break;
             }
         }

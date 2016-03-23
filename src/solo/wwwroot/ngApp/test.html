@@ -18,7 +18,7 @@
 
             </div>
         </div>
-                
+
     </div>
 
     <div class="postContent">
@@ -28,7 +28,7 @@
 
 <div class="comments">
     <ul class="commentList">
-        <li ng-repeat="comment in controller.comments" ng-include="'commentTree'"></li>
+        <li ng-repeat="comment in controller.comments | orderBy:'-score'" ng-include="'commentTree'"></li>
     </ul>
 </div>
 
@@ -37,9 +37,13 @@
 
     <div class="commentHeader">
 
-        <a class="user" ui-sref="user({user: comment.createor.name})">
+        <a class="user" ui-sref="user({user: comment.creator.name})">
             {{comment.creator.name}}
         </a>
+
+        <p>
+            Score: {{comment.score}}
+        </p>
 
         <div class="vote" ng-if="comment.showVoting">
 
@@ -55,7 +59,7 @@
     </div>
 
     <ul ng-if="comment.comments">
-        <li ng-repeat="comment in comment.comments" ng-include="'commentTree'">
+        <li ng-repeat="comment in comment.comments | orderBy:'-score'" ng-include="'commentTree'">
         </li>
     </ul>
 

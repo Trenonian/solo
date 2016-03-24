@@ -1,0 +1,85 @@
+﻿<div class="post">
+    
+    <div class="postHeader">
+
+        <h2>{{controller.title}}</h2>
+
+        <h3 ng-if="controller.creator">
+            <a class="user creator" ui-sref="user({user: controller.creator.name})">
+                {{controller.creator.name}}
+            </a>
+        </h3>
+        <h3 ng-if="!controller.creator">
+            [deleted]
+        </h3>
+
+        <div class="vote" ng-if="!controller.hideVoting">
+            <div class="upvote glyphicon glyphicon-arrow-up" ng-click="controller.upVote()">
+
+            </div>
+            <div class="downvote glyphicon glyphicon-arrow-down" ng-click="controller.downVote()">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="postContent">
+        {{controller.content}}
+    </div>
+</div>
+
+<div class="comments">
+    <ul class="commentList">
+        <li ng-repeat="comment in controller.comments | orderBy:'-score'" ng-include="'commentTree'"></li>
+    </ul>
+</div>
+
+
+<script type="text/ng-template" id="commentTree">
+
+    <div class="commentHeader">
+
+        
+
+        <div ng-if="comment.creator">
+            <a class="user" ui-sref="user({user: comment.creator.name})">
+                {{comment.creator.name}}
+            </a>
+
+
+
+            <p>
+                Score: {{comment.score}}
+            </p>
+           
+            <div class="vote" ng-if="!comment.hideVoting">
+
+                <div class="upvote glyphicon glyphicon-arrow-up" ng-click="comment.upVote()"></div>
+                <div class="downvote glyphicon glyphicon-arrow-down" ng-click="comment.downVote()"></div>
+
+            </div>
+        </div>
+
+        <div ng-if="!comment.creator">
+            <span class="user">
+                [deleted]
+            </span>
+
+            <p>
+                Score: [deleted]
+            </p>
+        </div>
+
+    </div>
+
+    <div class="commentBody">
+        {{comment.content}}
+    </div>
+
+    <ul ng-if="comment.comments">
+        <li ng-repeat="comment in comment.comments | orderBy:'-score'" ng-include="'commentTree'">
+        </li>
+    </ul>
+
+</script>

@@ -12,6 +12,7 @@ namespace solo.Models
         public Board ParentBoard { get; set; }
         public DateTime Created { get; set; }
         public abstract void Delete();
+        public bool Deleted { get; set; }
         public string Content { get; set; }
         public void EditContent(User newUser, string newContent)
         {

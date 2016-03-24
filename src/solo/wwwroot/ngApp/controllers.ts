@@ -24,7 +24,15 @@ namespace solo.Controllers {
 
     }
 
-    export class TestController {
+    export class TestHomeController {
+
+    }
+
+    export class TestBoardController {
+
+    }
+
+    export class TestPostController {
         title: string;
 
         creator;
@@ -76,7 +84,7 @@ namespace solo.Controllers {
                     score: 2,
                     comments: [
                         {
-                            creator: { name: "user7" },
+                            creator: null,
                             content: "content7",
                             score: 2,
                             comments: [

@@ -62,4 +62,11 @@ namespace solo.Services {
         }
     }
     angular.module('solo').service('boardService', BoardService);
+
+
+    export class TestService {
+        boards;
+        
+    }
+    angular.module('solo').service('testService', TestService);
 }

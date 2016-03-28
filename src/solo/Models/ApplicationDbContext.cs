@@ -16,5 +16,21 @@ namespace solo.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Board> Boards { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<User> MyUsers { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<Edit> Edits { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
     }
 }

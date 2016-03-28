@@ -19,14 +19,14 @@ namespace solo.Models
         {
             Posts.Remove(delPost);
         }
-        public List<User> Mods { get; set; }
+        public List<User> Moderators { get; set; }
         public void AddMod(User newMod)
         {
-            Mods.Add(newMod);
+            Moderators.Add(newMod);
         }
         public void RemoveMod(User delMod)
         {
-            Mods.Remove(delMod);
+            Moderators.Remove(delMod);
         }
         public List<User> Banned { get; set; }
         public void addBanned(User newBanned)
@@ -49,7 +49,7 @@ namespace solo.Models
         public bool Restricted { get; set; }
         public void SetRestricted(bool locked, User user)
         {
-            if (Mods.Contains(user))
+            if (Moderators.Contains(user))
             {
                 Restricted = locked;
             }

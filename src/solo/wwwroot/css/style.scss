@@ -1,0 +1,46 @@
+﻿h1{
+    font-weight:bold;
+
+}
+h2{
+    text-align: center;
+
+}
+h3{
+    
+}
+
+a{
+    text-decoration: none;
+    :link{
+        color: green;
+    }
+    :visited{
+        color: red;
+    }
+    :hover{
+        color: white;
+    }
+    :active{
+        color: black;
+    }
+}
+
+
+
+.page.post{
+    
+    
+}
+
+.vote {
+    cursor: pointer;
+}
+
+.upvote{
+    color: green;
+}
+
+.downvote{
+    color: red;
+}

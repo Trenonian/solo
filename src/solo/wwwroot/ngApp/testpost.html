@@ -1,4 +1,4 @@
-﻿<div class="post">
+﻿<div class="page post">
     
     <div class="postHeader">
 
@@ -13,11 +13,15 @@
             [deleted]
         </h3>
 
-        <div class="vote" ng-if="!controller.hideVoting">
-            <div class="upvote glyphicon glyphicon-arrow-up" ng-click="controller.upVote()">
+        <p>
+            Score: {{controller.score}}
+        </p>
+
+        <div ng-if="!controller.hideVoting">
+            <div class="vote upvote glyphicon glyphicon-arrow-up" ng-click="controller.score = controller.score+1">
 
             </div>
-            <div class="downvote glyphicon glyphicon-arrow-down" ng-click="controller.downVote()">
+            <div class="vote downvote glyphicon glyphicon-arrow-down" ng-click="controller.score = controller.score-1">
 
             </div>
         </div>
@@ -31,7 +35,7 @@
 
 <div class="comments">
     <ul class="commentList">
-        <li ng-repeat="comment in controller.comments | orderBy:'-score'" ng-include="'commentTree'"></li>
+        <li ng-repeat="comment in controller.comments | orderBy:'-score' | limitTo:10" ng-include="'commentTree'"></li>
     </ul>
 </div>
 
@@ -53,10 +57,10 @@
                 Score: {{comment.score}}
             </p>
            
-            <div class="vote" ng-if="!comment.hideVoting">
+            <div ng-if="!comment.hideVoting">
 
-                <div class="upvote glyphicon glyphicon-arrow-up" ng-click="comment.upVote()"></div>
-                <div class="downvote glyphicon glyphicon-arrow-down" ng-click="comment.downVote()"></div>
+                <div class="vote upvote glyphicon glyphicon-arrow-up" ng-click="comment.score = comment.score + 1"></div>
+                <div class="vote downvote glyphicon glyphicon-arrow-down" ng-click="comment.score = comment.score - 1"></div>
 
             </div>
         </div>
@@ -78,7 +82,7 @@
     </div>
 
     <ul ng-if="comment.comments">
-        <li ng-repeat="comment in comment.comments | orderBy:'-score'" ng-include="'commentTree'">
+        <li ng-repeat="comment in comment.comments | orderBy:'-score' | limitTo:5" ng-include="'commentTree'">
         </li>
     </ul>
 

@@ -28,6 +28,16 @@ gulp.task("clean:css", function (cb) {
 
 gulp.task("clean", ["clean:js", "clean:css"]);
 
+//gulp.task("sass-compile", function () {
+//    gulp.src('css/style.scss')
+//        .pipe(sass())
+//        .pipe(gulp.dest('.css/'))
+//});
+
+//gulp.task('watch-sass', function () {
+//    gulp.watch('css/*.scss', ['sass-compile']);
+//});
+
 gulp.task("min:js", function () {
     return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
         .pipe(concat(paths.concatJsDest))

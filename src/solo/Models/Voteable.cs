@@ -14,6 +14,10 @@ namespace solo.Models
         public abstract void Delete();
         public bool Deleted { get; set; }
         public string Content { get; set; }
+        public ICollection<Edit> Edits;
+        public ICollection<Comment> Comments { get; set; }
+        public int Score { get; set; }
+        public ICollection<Vote> Votes { get; set; }
         public void EditContent(User newUser, string newContent)
         {
             Edits.Add(new Edit
@@ -27,24 +31,20 @@ namespace solo.Models
         {
             Comments.Remove(delComment);
         }
-        public List<Edit> Edits;
-        public List<Comment> Comments { get; set; }
         public void AddComment(Comment newComment)
         {
             newComment.ParentBoard = ParentBoard;
             Comments.Add(newComment);
         }
-        public int Score { get; set; }
         public abstract void ChangeScore(int delta);
         public bool HasVoted(User votedUser)
         {
-            return Votes.Exists(x => x.Voter.Id == votedUser.Id);
+            return Votes.Any(x => x.Voter.Id == votedUser.Id);
         }
         public Vote CheckVote(User checkUser)
         {
-            return Votes.Find(x => x.Voter.Id == checkUser.Id);
+            return Votes.FirstOrDefault(x => x.Voter.Id == checkUser.Id);
         }
-        public List<Vote> Votes { get; set; }
         public void UpVote(User upUser)
         {
             if (!HasVoted(upUser))

@@ -9,7 +9,11 @@ namespace solo.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Post> Posts { get; set; }
+        public ICollection<Post> Posts { get; set; }
+        public List<UserBoard> Moderators { get; set; }
+        public ICollection<User> Banned { get; set; }
+        public ICollection<User> Allowed { get; set; }
+        public bool Restricted { get; set; }
         public void AddPost(Post newPost)
         {
             newPost.ParentBoard = this;
@@ -19,16 +23,19 @@ namespace solo.Models
         {
             Posts.Remove(delPost);
         }
-        public List<User> Moderators { get; set; }
         public void AddMod(User newMod)
         {
-            Moderators.Add(newMod);
+            Moderators.Add(
+                new UserBoard() {
+                    User = newMod,
+                    Board = this
+                }
+            );
         }
         public void RemoveMod(User delMod)
         {
-            Moderators.Remove(delMod);
+            Moderators.Remove(Moderators.Find(u => u.User == delMod));
         }
-        public List<User> Banned { get; set; }
         public void addBanned(User newBanned)
         {
             Banned.Add(newBanned);
@@ -37,7 +44,6 @@ namespace solo.Models
         {
             Banned.Remove(delBanned);
         }
-        public List<User> Allowed { get; set; }
         public void addAllowed(User newAllowed)
         {
             Allowed.Add(newAllowed);
@@ -46,13 +52,16 @@ namespace solo.Models
         {
             Allowed.Remove(delAllowed);
         }
-        public bool Restricted { get; set; }
         public void SetRestricted(bool locked, User user)
         {
-            if (Moderators.Contains(user))
+            if (Moderators.Find(u => u.User == user) != null)
             {
                 Restricted = locked;
             }
+        }
+        public void SetRestricted(bool locked, Admin admin)
+        {
+            Restricted = locked;
         }
     }
 

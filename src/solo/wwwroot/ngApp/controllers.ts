@@ -41,7 +41,11 @@ namespace solo.Controllers {
 
         comments;
 
+        score: number;
+
         constructor() {
+
+            this.score = 50;
 
             this.creator = { name: "poster" };
 

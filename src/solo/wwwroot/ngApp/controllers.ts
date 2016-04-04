@@ -29,7 +29,35 @@ namespace solo.Controllers {
     }
 
     export class TestBoardController {
+        oneAtATime = true;
 
+        groups = [
+            {
+                title: 'Dynamic Group Header - 1',
+                content: 'Dynamic Group Body - 1'
+            },
+            {
+                title: 'Dynamic Group Header - 2',
+                content: 'Dynamic Group Body - 2'
+            }
+        ];
+
+        items = ['Item 1', 'Item 2', 'Item 3'];
+
+        addItem() {
+            var newItemNo = this.items.length + 1;
+            this.items.push('Item ' + newItemNo);
+        };
+
+        status = {
+            isFirstOpen: true,
+            isFirstDisabled: false,
+            isBottomOpen: false
+        };
+
+        constuctor(acc: ng.ui.bootstrap.IAccordionConfig) {
+            acc.closeOthers = true;
+        }
     }
 
     export class TestPostController {

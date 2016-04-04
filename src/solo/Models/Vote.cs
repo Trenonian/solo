@@ -8,7 +8,13 @@ namespace solo.Models
     public class Vote
     {
         public int Id { get; set; }
+
+        public int VoterId { get; set; }
         public User Voter { get; set; }
+
+        public int TargetId { get; set; }
+        public Voteable Target { get; set; }
+
         private int _poll;
         public int Poll
         {
@@ -18,9 +24,9 @@ namespace solo.Models
             }
             set
             {
-                if (value != 1 && value != 0 && value != -1)
+                if (value != 1 && value != -1)
                 {
-                    _poll = 0;
+                    value = 0;
                 }
                 _poll = value;
             }

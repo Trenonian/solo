@@ -10,10 +10,10 @@ namespace solo.Models
         public int Id { get; set; }
 
         public int CreatorId { get; set; }
-        public User Creator { get; set; }
+        public ApplicationUser Creator { get; set; }
 
         public int TargetId { get; set; }
-        public User Target { get; set; }
+        public ApplicationUser Target { get; set; }
 
         public string Content { get; set; }
     }

@@ -20,7 +20,7 @@ namespace solo.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> GetDbUsers()
+        public IEnumerable<ApplicationUser> GetDbUsers()
         {
             return _context.DbUsers;
         }
@@ -34,7 +34,7 @@ namespace solo.Controllers
                 return HttpBadRequest(ModelState);
             }
 
-            User user = _context.DbUsers.Single(m => m.Id == id);
+            ApplicationUser user = _context.DbUsers.Single(m => m.Id == id);
 
             if (user == null)
             {
@@ -46,7 +46,7 @@ namespace solo.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public IActionResult PutUser(int id, [FromBody] User user)
+        public IActionResult PutUser(int id, [FromBody] ApplicationUser user)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace solo.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public IActionResult PostUser([FromBody] User user)
+        public IActionResult PostUser([FromBody] ApplicationUser user)
         {
             if (!ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace solo.Controllers
                 return HttpBadRequest(ModelState);
             }
 
-            User user = _context.DbUsers.Single(m => m.Id == id);
+            ApplicationUser user = _context.DbUsers.Single(m => m.Id == id);
             if (user == null)
             {
                 return HttpNotFound();

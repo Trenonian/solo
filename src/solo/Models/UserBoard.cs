@@ -8,7 +8,7 @@ namespace solo.Models
     public class UserBoard
     {
         public int Id { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public Board Board { get; set; }
     }
 }

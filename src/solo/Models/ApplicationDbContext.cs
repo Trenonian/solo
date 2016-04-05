@@ -17,20 +17,18 @@ namespace solo.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Board> DbBoards { get; set; }
+        public DbSet<Board> Boards { get; set; }
 
-        public DbSet<Post> DbPosts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-        public DbSet<Comment> DbComments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<User> DbUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
-        public DbSet<Admin> DbAdmins { get; set; }
+        public DbSet<Edit> Edits { get; set; }
 
-        public DbSet<Edit> DbEdits { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
-        public DbSet<Tag> DbTags { get; set; }
-
-        public DbSet<Vote> DbVotes { get; set; }
+        public DbSet<Vote> Votes { get; set; }
     }
 }

@@ -16,22 +16,6 @@ namespace solo.Models
         public int TargetId { get; set; }
         public Voteable Target { get; set; }
 
-        private int _poll;
-        //[NotMapped]
-        public int Poll
-        {
-            get
-            {
-                if (_poll != 1 || _poll != -1)
-                {
-                    return _poll;
-                }
-                return 0;
-            }
-            set
-            {
-                _poll = value;
-            }
-        }
+        private bool isUpVote { get; set; }
     }
 }

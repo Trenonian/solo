@@ -8,8 +8,6 @@ namespace solo.Models
 {
     public abstract class Voteable
     {
-        public int Id { get; set; }
-
         public int CreatorId { get; set; }
         [ForeignKey("CreatorId")]
         public ApplicationUser Creator { get; set; }

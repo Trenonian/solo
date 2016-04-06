@@ -9,14 +9,15 @@ namespace solo.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public bool IsAdmin { get; set; }
         public string Signature { get; set; }
         public int PostScore { get; set; }
         public int CommentScore { get; set; }
         public ICollection<Tag> Tagged { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public ICollection<UserBoard> ModdedBoards { get; set; }
+
+        //public ICollection<UserBoard> ModdedBoards { get; set; }
+        //public bool IsAdmin { get; set; }
 
         //public void AddTag(Tag newTag)
         //{

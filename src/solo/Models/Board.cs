@@ -9,11 +9,12 @@ namespace solo.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool Restricted { get; set; }
         public ICollection<Post> Posts { get; set; }
-        public ICollection<UserBoard> Moderators { get; set; }
-        public ICollection<ApplicationUser> Banned { get; set; }
-        public ICollection<ApplicationUser> Allowed { get; set; }
+
+        //public ICollection<UserBoard> Moderators { get; set; }
+        //public bool Restricted { get; set; }
+        //public ICollection<ApplicationUser> Banned { get; set; }
+        //public ICollection<ApplicationUser> Allowed { get; set; }
 
 
         //public void AddPost(Post newPost)
